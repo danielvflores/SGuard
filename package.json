@@ -1,0 +1,72 @@
+{
+  "name": "sguard-project",
+  "version": "1.0.0",
+  "description": "SGuard - Discord Security Bot & Management Platform (Monorepo)",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "api",
+    "bot", 
+    "frontend",
+    "shared"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm run install:api && npm run install:bot && npm run install:frontend",
+    "install:api": "cd api && npm install",
+    "install:bot": "cd bot && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "build": "npm run build:api && npm run build:bot && npm run build:frontend",
+    "build:api": "cd api && npm run build",
+    "build:bot": "cd bot && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:bot\" \"npm run dev:frontend\"",
+    "dev:api": "cd api && npm run dev",
+    "dev:bot": "cd bot && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "start": "concurrently \"npm run start:api\" \"npm run start:bot\" \"npm run start:frontend\"",
+    "start:api": "cd api && npm run start",
+    "start:bot": "cd bot && npm run start",
+    "start:frontend": "cd frontend && npm run start",
+    "clean": "rimraf api/dist api/node_modules bot/dist bot/node_modules frontend/dist frontend/node_modules node_modules",
+    "test": "npm run test:api && npm run test:bot && npm run test:frontend",
+    "test:api": "cd api && npm test",
+    "test:bot": "cd bot && npm test",
+    "test:frontend": "cd frontend && npm test",
+    "lint": "npm run lint:api && npm run lint:bot && npm run lint:frontend",
+    "lint:api": "cd api && npx eslint src --ext .ts",
+    "lint:bot": "cd bot && npx eslint src --ext .ts",
+    "lint:frontend": "cd frontend && npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielvflores/sguard-project.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "security",
+    "moderation",
+    "api",
+    "frontend",
+    "monorepo",
+    "typescript"
+  ],
+  "author": "Daniel Flores",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielvflores/sguard-project/issues"
+  },
+  "homepage": "https://github.com/danielvflores/sguard-project#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "rimraf": "^5.0.10",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}
