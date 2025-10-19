@@ -1,112 +1,112 @@
 # SGuard Project
 
-SGuard es una plataforma completa de seguridad y moderación para Discord que incluye un bot inteligente, una API robusta y una interfaz web moderna.
+SGuard is a comprehensive Discord security and moderation platform that includes an intelligent bot, a robust API, and a modern web interface.
 
-## 🏗️ Arquitectura del Monorepo
+## 🏗️ Monorepo Architecture
 
-Este proyecto está organizado como un monorepo que contiene tres componentes principales:
+This project is organized as a monorepo containing three main components:
 
 ```
 sguard-project/
-├── api/          # Servidor backend (Express.js + TypeScript)
-├── bot/          # Bot de Discord (DiscordX + TypeScript)
-├── frontend/     # Interfaz web (React/Next.js + TypeScript)
-└── shared/       # Código compartido entre proyectos
+├── api/          # Backend server (Express.js + TypeScript)
+├── bot/          # Discord Bot (DiscordX + TypeScript)
+├── frontend/     # Web interface (React/Next.js + TypeScript)
+└── shared/       # Shared code between projects
 ```
 
-## 🚀 Características
+## 🚀 Features
 
-### 🤖 Bot de Discord
-- **Moderación automática** con análisis de contenido inteligente
-- **Comandos de moderación** para administradores
-- **Sistema de sanciones** configurable
-- **Detección de keywords** en múltiples idiomas
-- **Análisis de sentimientos** y toxicidad
+### 🤖 Discord Bot
+- **Automatic moderation** with intelligent content analysis
+- **Moderation commands** for administrators
+- **Configurable sanctions system**
+- **Keyword detection** in multiple languages
+- **Sentiment and toxicity analysis**
 
 ### 🌐 API Backend
-- **RESTful API** para gestión de configuraciones
-- **Autenticación OAuth2** con Discord
-- **Gestión de guilds** y usuarios
-- **Configuración de moderación** por servidor
-- **Logging y auditoría** de acciones
+- **RESTful API** for configuration management
+- **OAuth2 authentication** with Discord
+- **Guild and user management**
+- **Per-server moderation configuration**
+- **Action logging and auditing**
 
-### 💻 Frontend Web
-- **Dashboard de administración** intuitivo
-- **Configuración visual** de parámetros de moderación
-- **Estadísticas y métricas** en tiempo real
-- **Gestión de usuarios** y permisos
-- **Interfaz responsive** y moderna
+### 💻 Web Frontend
+- **Intuitive admin dashboard**
+- **Visual configuration** of moderation parameters
+- **Real-time statistics and metrics**
+- **User and permission management**
+- **Responsive and modern interface**
 
-## 🛠️ Tecnologías
+## 🛠️ Technologies
 
-- **TypeScript** - Lenguaje principal
-- **Node.js** - Runtime de JavaScript
-- **Discord.js** - Librería para interactuar con Discord
-- **DiscordX** - Framework para bots de Discord
-- **Express.js** - Framework web para la API
-- **React/Next.js** - Framework para el frontend
-- **PostgreSQL** - Base de datos principal
-- **Docker** - Contenedorización
+- **TypeScript** - Primary language
+- **Node.js** - JavaScript runtime
+- **Discord.js** - Library for Discord interaction
+- **DiscordX** - Framework for Discord bots
+- **Express.js** - Web framework for the API
+- **React/Next.js** - Frontend framework
+- **PostgreSQL** - Primary database
+- **Docker** - Containerization
 
-## 📦 Instalación y Configuración
+## 📦 Installation and Setup
 
-### Prerrequisitos
+### Prerequisites
 
 - Node.js >= 18.0.0
 - npm >= 8.0.0
 - Git
 
-### Instalación
+### Installation
 
-1. **Clonar el repositorio:**
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/danielvflores/SGuard.git
    cd sguard-project
    ```
 
-2. **Instalar dependencias:**
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Configurar variables de entorno:**
+3. **Configure environment variables:**
    ```bash
-   # Copiar archivos de ejemplo
+   # Copy example files
    cp api/.env.example api/.env
    cp bot/.env.example bot/.env
    cp frontend/.env.example frontend/.env.local
    ```
 
-4. **Configurar las variables según tu entorno**
+4. **Configure variables according to your environment**
 
-## 🏃‍♂️ Scripts Disponibles
+## 🏃‍♂️ Available Scripts
 
-### Comandos Globales
+### Global Commands
 
 ```bash
-# Instalar todas las dependencias
+# Install all dependencies
 npm run install:all
 
-# Construir todos los proyectos
+# Build all projects
 npm run build
 
-# Modo desarrollo (todos los servicios)
+# Development mode (all services)
 npm run dev
 
-# Producción (todos los servicios)
+# Production mode (all services)
 npm run start
 
-# Limpiar archivos generados
+# Clean generated files
 npm run clean
 
-# Ejecutar tests
+# Run tests
 npm run test
 
 # Linting
 npm run lint
 ```
 
-### Comandos Por Proyecto
+### Per-Project Commands
 
 ```bash
 # API
@@ -125,66 +125,66 @@ npm run build:frontend
 npm run start:frontend
 ```
 
-## 🔧 Configuración de Desarrollo
+## 🔧 Development Configuration
 
-### 1. Bot de Discord
+### 1. Discord Bot
 
-1. Crear una aplicación en [Discord Developer Portal](https://discord.com/developers/applications)
-2. Crear un bot y obtener el token
-3. Configurar permisos y scopes necesarios
-4. Añadir el token al archivo `bot/.env`
+1. Create an application in [Discord Developer Portal](https://discord.com/developers/applications)
+2. Create a bot and get the token
+3. Configure necessary permissions and scopes
+4. Add the token to the `bot/.env` file
 
-### 2. Base de Datos
+### 2. Database
 
-1. Configurar PostgreSQL
-2. Crear las bases de datos necesarias
-3. Ejecutar migraciones
-4. Configurar conexión en `api/.env`
+1. Set up PostgreSQL
+2. Create the necessary databases
+3. Run migrations
+4. Configure connection in `api/.env`
 
-### 3. OAuth2 de Discord
+### 3. Discord OAuth2
 
-1. Configurar OAuth2 en Discord Developer Portal
-2. Añadir URLs de callback
-3. Configurar credenciales en `api/.env`
+1. Configure OAuth2 in Discord Developer Portal
+2. Add callback URLs
+3. Configure credentials in `api/.env`
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 sguard-project/
 ├── api/
 │   ├── src/
-│   │   ├── controllers/    # Controladores de la API
-│   │   ├── middlewares/    # Middlewares de Express
-│   │   ├── routes/         # Definición de rutas
-│   │   └── app/           # Configuración de la aplicación
+│   │   ├── controllers/    # API controllers
+│   │   ├── middlewares/    # Express middlewares
+│   │   ├── routes/         # Route definitions
+│   │   └── app/           # Application configuration
 │   ├── package.json
 │   └── tsconfig.json
 ├── bot/
 │   ├── src/
-│   │   ├── commands/       # Comandos de Discord
+│   │   ├── commands/       # Discord commands
 │   │   ├── events/         # Event listeners
-│   │   ├── utils/          # Utilidades y helpers
-│   │   └── bot.ts         # Punto de entrada del bot
+│   │   ├── utils/          # Utilities and helpers
+│   │   └── bot.ts         # Bot entry point
 │   ├── package.json
 │   └── tsconfig.json
 ├── frontend/
 │   ├── src/
-│   │   ├── components/     # Componentes React
-│   │   ├── pages/          # Páginas de la aplicación
+│   │   ├── components/     # React components
+│   │   ├── pages/          # Application pages
 │   │   ├── hooks/          # Custom hooks
-│   │   └── utils/          # Utilidades frontend
+│   │   └── utils/          # Frontend utilities
 │   ├── package.json
 │   └── tsconfig.json
 ├── shared/
-│   ├── types/             # Tipos TypeScript compartidos
-│   ├── constants/         # Constantes globales
-│   └── utils/             # Utilidades compartidas
-├── package.json           # Configuración del monorepo
-├── tsconfig.json          # Configuración base de TypeScript
+│   ├── types/             # Shared TypeScript types
+│   ├── constants/         # Global constants
+│   └── utils/             # Shared utilities
+├── package.json           # Monorepo configuration
+├── tsconfig.json          # Base TypeScript configuration
 └── README.md
 ```
 
-## 🔐 Variables de Entorno
+## 🔐 Environment Variables
 
 ### API (`api/.env`)
 ```env
@@ -211,48 +211,48 @@ NEXT_PUBLIC_DISCORD_CLIENT_ID=...
 ## 🧪 Testing
 
 ```bash
-# Ejecutar todos los tests
+# Run all tests
 npm test
 
-# Tests por proyecto
+# Tests per project
 npm run test:api
 npm run test:bot
 npm run test:frontend
 
-# Tests en modo watch
+# Tests in watch mode
 npm run test:watch
 ```
 
-## 📝 Contribución
+## 📝 Contributing
 
-1. Fork el proyecto
-2. Crear una rama de feature (`git checkout -b feature/nueva-caracteristica`)
-3. Commit los cambios (`git commit -am 'Añadir nueva característica'`)
-4. Push a la rama (`git push origin feature/nueva-caracteristica`)
-5. Crear un Pull Request
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Create a Pull Request
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está licenciado bajo la Licencia ISC. Ver el archivo [LICENSE](LICENSE) para más detalles.
+This project is licensed under the ISC License. See the [LICENSE](LICENSE) file for more details.
 
-## 👥 Autores
+## 👥 Authors
 
-- **Daniel Flores** - *Desarrollo inicial* - [@danielvflores](https://github.com/danielvflores)
+- **Daniel Flores** - *Initial development* - [@danielvflores](https://github.com/danielvflores)
 
-## 🙏 Agradecimientos
+## 🙏 Acknowledgments
 
-- Discord.js y DiscordX por las excelentes librerías
-- La comunidad de TypeScript
-- Todos los contribuidores al proyecto
+- Discord.js and DiscordX for the excellent libraries
+- The TypeScript community
+- All project contributors
 
-## 📞 Soporte
+## 📞 Support
 
-Si tienes alguna pregunta o necesitas ayuda:
+If you have any questions or need help:
 
-- 📧 Email: tu-email@ejemplo.com
+- 📧 Email: your-email@example.com
 - 🐛 Issues: [GitHub Issues](https://github.com/danielvflores/SGuard/issues)
-- 💬 Discord: [Servidor de soporte](https://discord.gg/tu-servidor)
+- 💬 Discord: [Support Server](https://discord.gg/your-server)
 
 ---
 
-⭐ ¡No olvides dar una estrella al proyecto si te resultó útil!
+⭐ Don't forget to give the project a star if you found it useful!
