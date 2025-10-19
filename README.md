@@ -60,7 +60,7 @@ sguard-project/
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone https://github.com/danielvflores/sguard-project.git
+   git clone https://github.com/danielvflores/SGuard.git
    cd sguard-project
    ```
 
@@ -250,7 +250,7 @@ Este proyecto está licenciado bajo la Licencia ISC. Ver el archivo [LICENSE](LI
 Si tienes alguna pregunta o necesitas ayuda:
 
 - 📧 Email: tu-email@ejemplo.com
-- 🐛 Issues: [GitHub Issues](https://github.com/danielvflores/sguard-project/issues)
+- 🐛 Issues: [GitHub Issues](https://github.com/danielvflores/SGuard/issues)
 - 💬 Discord: [Servidor de soporte](https://discord.gg/tu-servidor)
 
 ---

@@ -39,7 +39,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danielvflores/sguard-project.git"
+    "url": "git+https://github.com/danielvflores/SGuard.git"
   },
   "keywords": [
     "discord",
@@ -54,9 +54,9 @@
   "author": "Daniel Flores",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/danielvflores/sguard-project/issues"
+    "url": "https://github.com/danielvflores/SGuard/issues"
   },
-  "homepage": "https://github.com/danielvflores/sguard-project#readme",
+  "homepage": "https://github.com/danielvflores/SGuard#readme",
   "devDependencies": {
     "concurrently": "^8.2.2",
     "rimraf": "^5.0.10",
