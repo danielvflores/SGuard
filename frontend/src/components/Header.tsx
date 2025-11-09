@@ -1,6 +1,11 @@
+'use client';
+
 import Link from 'next/link'
+import { useAuth } from '../contexts/AuthContext'
 
 export default function Header() {
+  const { user, logout, isAuthenticated } = useAuth();
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
       <div className="container mx-auto px-6">
@@ -18,28 +23,59 @@ export default function Header() {
             <Link href="/about" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
               About
             </Link>
-            <Link href="/dashboard" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
-              Dashboard
-            </Link>
+            {isAuthenticated && (
+              <Link href="/dashboard" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
+                Dashboard
+              </Link>
+            )}
             <Link href="/docs" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
               Docs
             </Link>
           </nav>
           
-          {/* CTA Button */}
+          {/* Auth Section */}
           <div className="flex items-center space-x-4">
-            <Link
-              href="/login"
-              className="text-gray-600 hover:text-gray-900 transition-colors hidden sm:block font-medium"
-            >
-              Login
-            </Link>
-            <Link
-              href="/signup"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium shadow-sm hover:shadow-md"
-            >
-              Add to Discord
-            </Link>
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-3">
+                {user?.avatar ? (
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+                    alt={user.username}
+                  />
+                ) : (
+                  <div className="h-8 w-8 rounded-full bg-gray-400 flex items-center justify-center">
+                    <span className="text-white text-xs font-semibold">
+                      {user?.username?.[0]?.toUpperCase()}
+                    </span>
+                  </div>
+                )}
+                <span className="text-gray-700 font-medium hidden sm:block">
+                  {user?.username}
+                </span>
+                <button
+                  onClick={logout}
+                  className="text-gray-600 hover:text-gray-900 transition-colors font-medium"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="text-gray-600 hover:text-gray-900 transition-colors hidden sm:block font-medium"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/login"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium shadow-sm hover:shadow-md"
+                >
+                  Add to Discord
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}

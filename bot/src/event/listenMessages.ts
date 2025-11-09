@@ -10,6 +10,7 @@ export class ListenMessages {
   @Guard(NotBot)
   async onMessage([message]: ArgsOf<"messageCreate">) {
     if (!("content" in message) || !message.content) return;
+    
     const log = {
       guild: message.guild
         ? { id: message.guild.id, name: message.guild.name }
@@ -23,10 +24,12 @@ export class ListenMessages {
       content: message.content,
       timestamp: message.createdTimestamp
     };
+    
     const analysis = await analyzeMessage(log);
+    
     if (analysis.isToxic) {
       const logWithScore = { ...log, score: analysis.score };
-      console.log("Mensaje ofensivo detectado:", logWithScore);
+      console.log("🚨 Mensaje ofensivo detectado:", logWithScore);
       await handleToxicMessage(message, analysis.score);
     }
   }

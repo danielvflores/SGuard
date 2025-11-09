@@ -44,7 +44,15 @@ router.get('/auth/discord', (req: Request, res: Response) => {
 
 router.get('/auth/callback', async (req: Request, res: Response) => {
   const code = req.query.code as string;
-  if (!code) return res.status(400).json({ error: 'No code provided' });
+  const error = req.query.error as string;
+
+  if (error) {
+    return res.redirect(`http://localhost:3000/login?error=${error}`);
+  }
+
+  if (!code) {
+    return res.redirect('http://localhost:3000/login?error=no_code');
+  }
 
   try {
     const tokenRes = await fetch('https://discord.com/api/oauth2/token', {
@@ -62,10 +70,7 @@ router.get('/auth/callback', async (req: Request, res: Response) => {
     
     const tokenData = await tokenRes.json() as DiscordTokenResponse;
     if (!tokenData.access_token) {
-      return res.status(400).json({ 
-        error: 'No access_token received', 
-        details: tokenData 
-      });
+      return res.redirect(`http://localhost:3000/login?error=no_token&details=${encodeURIComponent(JSON.stringify(tokenData))}`);
     }
 
     const userRes = await fetch('https://discord.com/api/users/@me', {
@@ -73,9 +78,15 @@ router.get('/auth/callback', async (req: Request, res: Response) => {
     });
     const userData = await userRes.json() as DiscordUser;
 
-    res.json({ user: userData, token: tokenData });
+    // Codificar los datos para pasarlos como query params
+    const userDataEncoded = encodeURIComponent(JSON.stringify(userData));
+    const tokenDataEncoded = encodeURIComponent(JSON.stringify(tokenData));
+
+    // Redirigir al frontend con los datos
+    res.redirect(`http://localhost:3000/auth/callback?user=${userDataEncoded}&token=${tokenDataEncoded}`);
   } catch (err) {
-    res.status(500).json({ error: 'OAuth2 error', details: err });
+    console.error('OAuth2 error:', err);
+    res.redirect(`http://localhost:3000/login?error=callback_failed&details=${encodeURIComponent(JSON.stringify(err))}`);
   }
 });
 

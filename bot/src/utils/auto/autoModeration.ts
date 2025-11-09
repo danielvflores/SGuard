@@ -27,8 +27,6 @@ const getModerationLevel = async (guildId: string): Promise<ModerationConfig> =>
     const data = await response.json() as ModerationConfig;
     return data;
   } catch (error) {
-    console.log(`[AutoMod] Error obteniendo configuración para guild ${guildId}:`, error);
-    console.log(`[AutoMod] Usando configuración por defecto: medium`);
     return { level: "medium" };
   }
 };
@@ -36,11 +34,15 @@ const getModerationLevel = async (guildId: string): Promise<ModerationConfig> =>
 
 export const handleToxicMessage = async (message: Message, score: number): Promise<void> => {
   if (!message.guild) return;
-
+  
   const config = await getModerationLevel(message.guild.id);
   const decision = shouldTakeAction(score, config.level);
 
   if (decision.shouldAct && decision.action) {
-    await decision.action(message);
+    try {
+      await decision.action(message);
+    } catch (error) {
+      console.error(`[AutoMod] Error ejecutando acción:`, error);
+    }
   }
 };

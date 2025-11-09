@@ -2,6 +2,7 @@ import '../../globals.css'
 import type { Metadata } from 'next'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import { AuthProvider } from '../contexts/AuthContext'
 
 export const metadata: Metadata = {
   title: 'SGuard - Discord Moderation Bot',
@@ -16,11 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col bg-white text-gray-900 antialiased">
-        <Header />
-        <main className="flex-1 pt-16">
-          {children}
-        </main>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <main className="flex-1 pt-16">
+            {children}
+          </main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   )

@@ -5,7 +5,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-const port = process.env.API_PORT || 3000;
+const port = process.env.API_PORT || 3001;
 
 // declare routes from ./routes
 
